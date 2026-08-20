@@ -1,85 +1,40 @@
 import cv2
 import matplotlib.pyplot as plt
 
-# Cargar imágenes
-logo1 = cv2.imread("logo1.png")
-logo2 = cv2.imread("logo2.png")
+def graficar_contornos(ruta_imagen, titulo):
+    # 1. Leer la imagen
+    img = cv2.imread(ruta_imagen)
+    
+    # Verificar si la imagen se cargó correctamente
+    if img is None:
+        print(f"Error: No se encontró la imagen '{ruta_imagen}'. Verifica que el nombre y la carpeta sean correctos.")
+        return
 
+    # 2. Convertir la imagen a escala de grises
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-# Convertir a escala de grises
-gris1 = cv2.cvtColor(
-    logo1,
-    cv2.COLOR_BGR2GRAY
-)
+    # 3. Aplicar umbralización
+    _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY_INV)
 
-gris2 = cv2.cvtColor(
-    logo2,
-    cv2.COLOR_BGR2GRAY
-)
+    # 4. Encontrar los contornos
+    contornos, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
+    # 5. Preparar la gráfica con matplotlib
+    plt.figure(figsize=(8, 6))
+    plt.title(titulo)
 
-# Convertir a blanco y negro
-_, binario1 = cv2.threshold(
-    gris1,
-    127,
-    255,
-    cv2.THRESH_BINARY
-)
+    # 6. Extraer las coordenadas X y Y y graficarlas
+    for contorno in contornos:
+        x = contorno[:, 0, 0]
+        y = contorno[:, 0, 1]
+        plt.plot(x, y, linewidth=2)
 
-_, binario2 = cv2.threshold(
-    gris2,
-    127,
-    255,
-    cv2.THRESH_BINARY
-)
+    # Invertir el eje Y y mantener la proporción
+    plt.gca().invert_yaxis()
+    plt.axis('equal') 
+    plt.grid(True)
+    plt.show()
 
-
-# Obtener contornos
-contornos1, _ = cv2.findContours(
-    binario1,
-    cv2.RETR_EXTERNAL,
-    cv2.CHAIN_APPROX_SIMPLE
-)
-
-contornos2, _ = cv2.findContours(
-    binario2,
-    cv2.RETR_EXTERNAL,
-    cv2.CHAIN_APPROX_SIMPLE
-)
-
-
-# GRÁFICA
-plt.figure(figsize=(10, 5))
-
-
-# Logo 1
-for contorno in contornos1:
-
-    coordenadas = contorno[:, 0, :]
-
-    x = coordenadas[:, 0]
-    y = -coordenadas[:, 1]
-
-    plt.plot(x, y)
-
-
-# Logo 2
-for contorno in contornos2:
-
-    coordenadas = contorno[:, 0, :]
-
-    x = coordenadas[:, 0]
-    y = -coordenadas[:, 1]
-
-    plt.plot(x, y)
-
-
-plt.title("Contornos de logos de automóviles")
-
-plt.xlabel("X")
-plt.ylabel("Y")
-
-plt.axis("equal")
-plt.grid()
-
-plt.show()
+# Ejecutar la función con los nombres nuevos
+graficar_contornos('AUDI.png', 'Coordenadas X y Y - Contornos Audi')
+graficar_contornos('LOGOC.png', 'Coordenadas X y Y - Contornos Chevrolet')
