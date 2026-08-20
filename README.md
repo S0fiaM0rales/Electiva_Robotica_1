@@ -1,4 +1,4 @@
-# Electiva Robótica
+# Electiva Robótica 1
 # Taller 1 – Python 
 
 Repositorio con el desarrollo del primer taller práctico de Python para la asignatura **Electiva de Robótica** en la **Universidad ECCI**.
