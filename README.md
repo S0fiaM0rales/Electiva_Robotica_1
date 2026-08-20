@@ -4,11 +4,11 @@
 Repositorio con el desarrollo del primer taller práctico de Python para la asignatura **Electiva de Robótica** en la **Universidad ECCI**.
 **Profesor:** Fabián Barrera Prieto (MSc)
 **Estudiantes:** 
-Karen Sofía Herrera Morales - 125740
-Luis Alirio López Gutiérrez - 87251
-Steve Santiago Diaz Vanegas - 130470
-Diego Alberto Quiroga Bernal - 132821
-Nicolas Cuartas Villarreal - 129338
+* Karen Sofía Herrera Morales - 125740
+* Luis Alirio López Gutiérrez - 87251
+* Steve Santiago Diaz Vanegas - 130470
+* Diego Alberto Quiroga Bernal - 132821
+* Nicolas Cuartas Villarreal - 129338
 
 ## Estructura del Proyecto
 El taller está dividido en tres secciones principales:
