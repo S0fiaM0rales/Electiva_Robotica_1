@@ -2,7 +2,9 @@
 # Taller 1 – Python 
 
 Repositorio con el desarrollo del primer taller práctico de Python para la asignatura **Electiva de Robótica** en la **Universidad ECCI**.
+
 **Profesor:** Fabián Barrera Prieto (MSc)
+
 **Estudiantes:** 
 * Karen Sofía Herrera Morales - 125740
 * Luis Alirio López Gutiérrez - 87251
