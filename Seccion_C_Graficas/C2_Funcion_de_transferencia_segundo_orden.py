@@ -2,63 +2,46 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import signal
 
-# Coeficientes ingresados por teclado
-b0 = float(input("Ingrese el coeficiente del numerador: "))
+# Ingreso de parámetros estándar por teclado
+K = float(input("Ingrese la ganancia estática (K): "))
+wn = float(input("Ingrese la frecuencia natural del sistema (ωn): "))
+zeta = float(input("Ingrese el factor de amortiguamiento (ζ): "))
 
-a2 = float(input("Ingrese el coeficiente de s^2: "))
-a1 = float(input("Ingrese el coeficiente de s: "))
-a0 = float(input("Ingrese el término independiente: "))
+# Construcción de la función de transferencia
+# G(s) = (K * wn^2) / (s^2 + 2*zeta*wn*s + wn^2)
+numerador = [K * (wn**2)]
+denominador = [1, 2 * zeta * wn, wn**2]
 
-# Función de transferencia
-numerador = [b0]
-denominador = [a2, a1, a0]
+sistema = signal.TransferFunction(numerador, denominador)
 
-sistema = signal.TransferFunction(
-    numerador,
-    denominador
-)
-
-# Cálculo del discriminante
-discriminante = a1**2 - 4*a2*a0
-
-
-# Tipo de sistema
-if discriminante < 0:
-
+# Tipo de sistema basado directamente en el factor de amortiguamiento (zeta)
+if zeta < 1:
     tipo_sistema = "Subamortiguado"
-
-elif discriminante == 0:
-
+elif zeta == 1:
     tipo_sistema = "Críticamente amortiguado"
-
 else:
-
     tipo_sistema = "Sobreamortiguado"
-
 
 # Respuesta al escalón
 tiempo, respuesta = signal.step(sistema)
 
-
 # RESULTADOS
-print("\nCoeficientes del sistema:")
+print("\n--- Parámetros ingresados ---")
+print(f"Ganancia estática (K): {K}")
+print(f"Frecuencia natural (ωn): {wn}")
+print(f"Factor de amortiguamiento (ζ): {zeta}")
+
+print("\n--- Polinomios resultantes ---")
 print("Numerador:", numerador)
 print("Denominador:", denominador)
 
-print("\nDiscriminante:")
-print(discriminante)
-
-print("\nTipo de sistema:")
+print("\n--- Tipo de sistema ---")
 print(tipo_sistema)
-
 
 # GRÁFICA
 plt.plot(tiempo, respuesta)
-
 plt.title("Respuesta al escalón - " + tipo_sistema)
 plt.xlabel("Tiempo (s)")
 plt.ylabel("Amplitud")
-
-plt.grid()
-
+plt.grid(True)
 plt.show()
