@@ -53,7 +53,7 @@ def extraer_y_graficar_contornos(ruta_imagen, nombre_logo):
     print(f' - Contornos significativos detectados: {len(contours)}')
     print(f' - Total de puntos (X, Y) extraídos: {total_puntos}\n')
 
-carpeta_imagenes = Path(__file__).resolve().parent.parent
+carpeta_imagenes = Path(__file__).resolve().parent
 extraer_y_graficar_contornos(str(carpeta_imagenes / 'mazda.png'), 'Mazda')
 extraer_y_graficar_contornos(str(carpeta_imagenes / 'mercedes.jpg'), 'Mercedes-Benz')
 
