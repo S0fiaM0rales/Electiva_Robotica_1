@@ -11,6 +11,7 @@ Repositorio con el desarrollo del primer taller práctico de Python para la asig
 * Steve Santiago Diaz Vanegas - 130470
 * Diego Alberto Quiroga Bernal - 132821
 * Nicolas Cuartas Villarreal - 129338
+* Laura Valentina Estupiñan - 102998
 
 ## Estructura del Proyecto
 El taller está dividido en tres secciones principales:
